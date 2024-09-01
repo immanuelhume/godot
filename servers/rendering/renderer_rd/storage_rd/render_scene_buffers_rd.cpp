@@ -78,6 +78,9 @@ void RenderSceneBuffersRD::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("get_screen_space_aa"), &RenderSceneBuffersRD::get_screen_space_aa);
 	ClassDB::bind_method(D_METHOD("get_use_taa"), &RenderSceneBuffersRD::get_use_taa);
 	ClassDB::bind_method(D_METHOD("get_use_debanding"), &RenderSceneBuffersRD::get_use_debanding);
+
+	// Expose 2D sdf texture
+	ClassDB::bind_method(D_METHOD("get_sdf_texture"), &RenderSceneBuffersRD::get_sdf_texture);
 }
 
 void RenderSceneBuffersRD::update_sizes(NamedTexture &p_named_texture) {
@@ -648,6 +651,20 @@ RID RenderSceneBuffersRD::get_depth_texture(const uint32_t p_layer) {
 	} else {
 		return get_texture_slice(RB_SCOPE_BUFFERS, RB_TEX_DEPTH, p_layer, 0);
 	}
+}
+
+// SDF texture
+
+RID RenderSceneBuffersRD::get_sdf_texture() {
+	// @todo(jy): figure out how to generate mips
+	ERR_FAIL_COND_V(render_target.is_null(), RID()); // @todo(jy): don't throw
+
+	RendererRD::TextureStorage *texture_storage = RendererRD::TextureStorage::get_singleton();
+	RID sdf = texture_storage->render_target_get_sdf_texture(render_target);
+
+	ERR_FAIL_COND_V(!sdf.is_valid(), RID()); // @todo(jy): don't throw
+
+	return sdf;
 }
 
 // Upscaled texture.
