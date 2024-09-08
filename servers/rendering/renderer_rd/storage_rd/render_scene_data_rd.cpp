@@ -300,3 +300,7 @@ void RenderSceneDataRD::update_ubo(RID p_uniform_buffer, RS::ViewportDebugDraw p
 RID RenderSceneDataRD::get_uniform_buffer() const {
 	return uniform_buffer;
 }
+
+RID RenderSceneDataRD::get_canvas_state_buffer() const {
+	return RSG::canvas_render->get_state_buffer();
+}

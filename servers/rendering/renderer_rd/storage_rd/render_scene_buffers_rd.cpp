@@ -80,7 +80,7 @@ void RenderSceneBuffersRD::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("get_use_debanding"), &RenderSceneBuffersRD::get_use_debanding);
 
 	// Expose 2D sdf texture
-	ClassDB::bind_method(D_METHOD("get_sdf_texture"), &RenderSceneBuffersRD::get_sdf_texture);
+	ClassDB::bind_method(D_METHOD("get_canvas_sdf_texture"), &RenderSceneBuffersRD::get_canvas_sdf_texture);
 }
 
 void RenderSceneBuffersRD::update_sizes(NamedTexture &p_named_texture) {
@@ -655,7 +655,7 @@ RID RenderSceneBuffersRD::get_depth_texture(const uint32_t p_layer) {
 
 // SDF texture
 
-RID RenderSceneBuffersRD::get_sdf_texture() {
+RID RenderSceneBuffersRD::get_canvas_sdf_texture() {
 	// @todo(jy): figure out how to generate mips
 	ERR_FAIL_COND_V(render_target.is_null(), RID()); // @todo(jy): don't throw
 

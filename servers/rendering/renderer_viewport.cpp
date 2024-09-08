@@ -359,6 +359,7 @@ void RendererViewport::_draw_viewport(Viewport *p_viewport) {
 			RSG::canvas_render->render_sdf(p_viewport->render_target, occluders);
 			RSG::texture_storage->render_target_mark_sdf_enabled(p_viewport->render_target, true);
 
+			// @todo(jy): we might have to handle this
 			p_viewport->sdf_active = false; // If used, gets set active again.
 		} else {
 			RSG::texture_storage->render_target_mark_sdf_enabled(p_viewport->render_target, false);

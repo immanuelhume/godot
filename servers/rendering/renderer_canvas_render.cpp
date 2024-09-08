@@ -136,3 +136,8 @@ RendererCanvasRender::Item::CommandMesh::~CommandMesh() {
 		RSG::mesh_storage->mesh_instance_free(mesh_instance);
 	}
 }
+
+RID RendererCanvasRender::get_state_buffer() {
+	// @todo(jy): this is BAD! Only RendererCanvasRD actually implements it...
+	return RID();
+}

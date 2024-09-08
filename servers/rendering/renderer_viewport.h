@@ -106,7 +106,7 @@ public:
 		int shadow_atlas_size = 2048;
 		bool shadow_atlas_16_bits = true;
 
-		bool sdf_active = false;
+		bool sdf_active = true; // @todo(jy): diabolical
 
 		float mesh_lod_threshold = 1.0;
 
@@ -178,7 +178,7 @@ public:
 			snap_2d_vertices_to_pixel = false;
 
 			use_xr = false;
-			sdf_active = false;
+			sdf_active = true; // @todo(jy): diabolical
 
 			time_cpu_begin = 0;
 			time_cpu_end = 0;

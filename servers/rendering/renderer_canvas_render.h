@@ -545,6 +545,8 @@ public:
 
 	virtual void set_debug_redraw(bool p_enabled, double p_time, const Color &p_color) = 0;
 
+	virtual RID get_state_buffer();
+
 	RendererCanvasRender() {
 		ERR_FAIL_COND_MSG(singleton != nullptr, "A RendererCanvasRender singleton already exists.");
 		singleton = this;
