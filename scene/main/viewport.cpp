@@ -4811,6 +4811,8 @@ void Viewport::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("set_vrs_texture", "texture"), &Viewport::set_vrs_texture);
 	ClassDB::bind_method(D_METHOD("get_vrs_texture"), &Viewport::get_vrs_texture);
 
+	ClassDB::bind_method(D_METHOD("get_render_target"), &Viewport::get_render_target);
+
 	ADD_PROPERTY(PropertyInfo(Variant::BOOL, "disable_3d"), "set_disable_3d", "is_3d_disabled");
 	ADD_PROPERTY(PropertyInfo(Variant::BOOL, "use_xr"), "set_use_xr", "is_using_xr");
 	ADD_PROPERTY(PropertyInfo(Variant::BOOL, "own_world_3d"), "set_use_own_world_3d", "is_using_own_world_3d");
@@ -4979,6 +4981,10 @@ void Viewport::_validate_property(PropertyInfo &p_property) const {
 	if (vrs_mode == VRS_DISABLED && (p_property.name == "vrs_update_mode")) {
 		p_property.usage = PROPERTY_USAGE_NO_EDITOR;
 	}
+}
+
+RID Viewport::get_render_target() const {
+	return RS::get_singleton()->viewport_get_render_target(viewport);
 }
 
 Viewport::Viewport() {

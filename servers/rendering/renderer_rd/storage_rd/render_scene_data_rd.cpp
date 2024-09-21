@@ -35,6 +35,7 @@
 #include "servers/rendering/rendering_server_default.h"
 
 void RenderSceneDataRD::_bind_methods() {
+	ClassDB::bind_method(D_METHOD("get_canvas_state_buffer"), &RenderSceneDataRD::get_canvas_state_buffer);
 }
 
 Transform3D RenderSceneDataRD::get_cam_transform() const {

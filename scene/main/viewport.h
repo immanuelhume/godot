@@ -679,6 +679,10 @@ public:
 	virtual bool is_attached_in_viewport() const { return false; };
 	virtual bool is_sub_viewport() const { return false; };
 
+	// SDF
+
+	RID get_render_target() const;
+
 private:
 	// 2D audio, camera, and physics. (don't put World2D here because World2D is needed for Control nodes).
 	friend class AudioListener2D; // Needs _audio_listener_2d_set and _audio_listener_2d_remove

@@ -81,6 +81,7 @@ void RenderSceneBuffersRD::_bind_methods() {
 
 	// Expose 2D sdf texture
 	ClassDB::bind_method(D_METHOD("get_canvas_sdf_texture"), &RenderSceneBuffersRD::get_canvas_sdf_texture);
+	ClassDB::bind_method(D_METHOD("get_canvas_sdf_texture_render_target", "render_target"), &RenderSceneBuffersRD::get_canvas_sdf_texture_render_target);
 }
 
 void RenderSceneBuffersRD::update_sizes(NamedTexture &p_named_texture) {
@@ -661,6 +662,17 @@ RID RenderSceneBuffersRD::get_canvas_sdf_texture() {
 
 	RendererRD::TextureStorage *texture_storage = RendererRD::TextureStorage::get_singleton();
 	RID sdf = texture_storage->render_target_get_sdf_texture(render_target);
+
+	// @todo(jy): don't throw
+	// ERR_FAIL_COND_V(!sdf.is_valid(), RID());
+	ERR_FAIL_COND_V(!RD::get_singleton()->texture_is_valid(sdf), RID());
+
+	return sdf;
+}
+
+RID RenderSceneBuffersRD::get_canvas_sdf_texture_render_target(RID p_render_target) {
+	RendererRD::TextureStorage *texture_storage = RendererRD::TextureStorage::get_singleton();
+	RID sdf = texture_storage->render_target_get_sdf_texture(p_render_target);
 
 	ERR_FAIL_COND_V(!sdf.is_valid(), RID()); // @todo(jy): don't throw
 
