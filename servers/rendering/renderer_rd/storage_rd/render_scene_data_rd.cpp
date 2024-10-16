@@ -32,9 +32,11 @@
 #include "servers/rendering/renderer_rd/renderer_scene_render_rd.h"
 #include "servers/rendering/renderer_rd/storage_rd/light_storage.h"
 #include "servers/rendering/renderer_rd/storage_rd/texture_storage.h"
+#include "servers/rendering/renderer_rd/renderer_canvas_render_rd.h"
 #include "servers/rendering/rendering_server_default.h"
 
 void RenderSceneDataRD::_bind_methods() {
+	ClassDB::bind_method(D_METHOD("get_canvas_state_buffer"), &RenderSceneDataRD::get_canvas_state_buffer);
 }
 
 Transform3D RenderSceneDataRD::get_cam_transform() const {
@@ -299,4 +301,8 @@ void RenderSceneDataRD::update_ubo(RID p_uniform_buffer, RS::ViewportDebugDraw p
 
 RID RenderSceneDataRD::get_uniform_buffer() const {
 	return uniform_buffer;
+}
+
+RID RenderSceneDataRD::get_canvas_state_buffer() const {
+	return dynamic_cast<RendererCanvasRenderRD*>(RSG::canvas_render)->get_state_buffer();
 }

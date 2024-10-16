@@ -456,6 +456,8 @@ public:
 
 	void set_debug_redraw(bool p_enabled, double p_time, const Color &p_color) override;
 
+	RID get_state_buffer();
+
 	void set_time(double p_time);
 	void update() override;
 	bool free(RID p_rid) override;

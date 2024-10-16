@@ -178,7 +178,7 @@ public:
 			snap_2d_vertices_to_pixel = false;
 
 			use_xr = false;
-			sdf_active = false;
+			sdf_active = true; // pretty cursed, not sure why we need this
 
 			time_cpu_begin = 0;
 			time_cpu_end = 0;
